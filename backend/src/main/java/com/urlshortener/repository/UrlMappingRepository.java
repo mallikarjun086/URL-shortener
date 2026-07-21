@@ -1,0 +1,24 @@
+package com.urlshortener.repository;
+
+import com.urlshortener.entity.UrlMapping;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface UrlMappingRepository extends JpaRepository<UrlMapping, Long> {
+    Optional<UrlMapping> findByShortCode(String shortCode);
+    boolean existsByShortCode(String shortCode);
+    List<UrlMapping> findByUserId(Long userId);
+    List<UrlMapping> findByExpiresAtBefore(LocalDateTime now);
+
+    @Modifying
+    @Query("UPDATE UrlMapping u SET u.clickCount = u.clickCount + 1 WHERE u.id = :id")
+    void incrementClickCount(@Param("id") Long id);
+}
