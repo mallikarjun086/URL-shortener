@@ -1,11 +1,22 @@
-## Review the Contributing Guidelines
+## Description
 
-Before submitting a pull request, verify it meets all requirements in the [Contributing Guidelines](https://github.com/donnemartin/system-design-primer/blob/master/CONTRIBUTING.md).
+Provide a clear description of the changes introduced by this Pull Request.
 
-### Translations
+- What problem does this PR solve?
+- What features or enhancements are added?
 
-See the [Contributing Guidelines](https://github.com/donnemartin/system-design-primer/blob/master/CONTRIBUTING.md).  Verify you've:
+## Type of Change
 
-* Tagged the [language maintainer](https://github.com/donnemartin/system-design-primer/blob/master/TRANSLATIONS.md)
-* Prefixed the title with a language code
-    * Example: "ja: Fix ..."
+- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
+- [ ] ✨ New feature (non-breaking change which adds functionality)
+- [ ] ⚡ Performance improvement
+- [ ] 🔒 Security hardening
+- [ ] 📚 Documentation update
+
+## Verification & Testing
+
+Describe the tests run to verify your changes:
+
+- [ ] Backend Unit & Integration Tests (`cd backend && mvn clean test`)
+- [ ] Frontend Build & Lint (`cd frontend && npm run build`)
+- [ ] Local Docker Compose Verification (`docker-compose up --build`)
