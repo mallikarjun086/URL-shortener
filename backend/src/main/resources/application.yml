@@ -15,13 +15,13 @@ logging:
     org.springframework.web: WARN
 
 server:
-  port: 8081 # Using 8081 to avoid conflict with busy port 8080
+  port: 8083 # Using 8083 to avoid conflict with busy port 8080 or 8082
 
 app:
   jwt:
     secret: dGhpc0lzQVNlY3JldEtleUZvckpXVENyZWF0aW9uQW5kVmFsaWRhdGlvbkluT3VyVVJMU2hvcnRlbmVyQXBwbGljYXRpb24xMjM0NTY3ODkw
     expiration-ms: 86400000 # 24 Hours
-  domain: ${APP_DOMAIN:http://localhost:8081}
+  domain: ${APP_DOMAIN:http://localhost:8083}
   snowflake:
     worker-id: ${WORKER_ID:1}
     datacenter-id: ${DATACENTER_ID:1}

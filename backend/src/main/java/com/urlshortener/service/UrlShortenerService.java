@@ -27,6 +27,7 @@ public class UrlShortenerService {
     private final RedisCacheService redisCacheService;
     private final KafkaAnalyticsProducerService kafkaProducerService;
     private final BloomFilterService bloomFilterService;
+    private final UrlValidationService urlValidationService;
 
     @Value("${app.domain:http://localhost:8080}")
     private String domain;
@@ -36,17 +37,21 @@ public class UrlShortenerService {
                                UserRepository userRepository,
                                RedisCacheService redisCacheService,
                                KafkaAnalyticsProducerService kafkaProducerService,
-                               BloomFilterService bloomFilterService) {
+                               BloomFilterService bloomFilterService,
+                               UrlValidationService urlValidationService) {
         this.idGenerator = idGenerator;
         this.urlMappingRepository = urlMappingRepository;
         this.userRepository = userRepository;
         this.redisCacheService = redisCacheService;
         this.kafkaProducerService = kafkaProducerService;
         this.bloomFilterService = bloomFilterService;
+        this.urlValidationService = urlValidationService;
     }
 
     @Transactional
     public ShortenUrlResponse shortenUrl(ShortenUrlRequest request, String userEmail) {
+        urlValidationService.validateUrl(request.getLongUrl());
+
         String shortCode;
 
         if (request.getCustomAlias() != null && !request.getCustomAlias().isBlank()) {

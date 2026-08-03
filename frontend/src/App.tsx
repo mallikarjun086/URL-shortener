@@ -61,7 +61,7 @@ interface AnalyticsData {
 const DEFAULT_DEMO_LINKS: ShortenedLink[] = [
   {
     shortCode: 'sys-primer',
-    shortUrl: 'http://localhost:8081/sys-primer',
+    shortUrl: 'http://localhost:8083/sys-primer',
     originalUrl: 'https://donnemartin.com/system-design-primer',
     clickCount: 1420,
     createdAt: '2026-07-19 12:00',
@@ -149,7 +149,7 @@ export default function App() {
       const demoCode = customAlias.trim() || Math.random().toString(36).substring(2, 8);
       const newLink: ShortenedLink = {
         shortCode: demoCode,
-        shortUrl: `http://localhost:8081/${demoCode}`,
+        shortUrl: `http://localhost:8083/${demoCode}`,
         originalUrl: longUrl,
         clickCount: 0,
         createdAt: new Date().toISOString().split('T')[0],
@@ -532,6 +532,29 @@ export default function App() {
                         Top OS: <span className="text-slate-200">Windows (45%), macOS (35%)</span>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* Export Telemetry Buttons */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+                  <span className="text-xs text-slate-400 font-semibold uppercase">Export Telemetry Log</span>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => {
+                        window.open(`http://localhost:8083/api/v1/urls/${selectedLink.shortCode}/analytics/export?format=csv`, '_blank');
+                      }}
+                      className="px-3 py-1.5 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30 rounded-lg text-xs font-medium transition-colors"
+                    >
+                      Export CSV
+                    </button>
+                    <button
+                      onClick={() => {
+                        window.open(`http://localhost:8083/api/v1/urls/${selectedLink.shortCode}/analytics/export?format=json`, '_blank');
+                      }}
+                      className="px-3 py-1.5 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-300 border border-cyan-500/30 rounded-lg text-xs font-medium transition-colors"
+                    >
+                      Export JSON
+                    </button>
                   </div>
                 </div>
               </div>

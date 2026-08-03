@@ -38,13 +38,15 @@ class UrlShortenerServiceTest {
     private BloomFilterService bloomFilterService;
 
     private SnowflakeIdGenerator idGenerator;
+    private UrlValidationService urlValidationService;
     private UrlShortenerService urlShortenerService;
 
     @BeforeEach
     void setUp() {
         idGenerator = new SnowflakeIdGenerator(1, 1);
+        urlValidationService = new UrlValidationService();
         urlShortenerService = new UrlShortenerService(
-                idGenerator, urlMappingRepository, userRepository, redisCacheService, kafkaProducerService, bloomFilterService
+                idGenerator, urlMappingRepository, userRepository, redisCacheService, kafkaProducerService, bloomFilterService, urlValidationService
         );
     }
 
