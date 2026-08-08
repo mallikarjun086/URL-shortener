@@ -62,9 +62,10 @@ public class AnalyticsController {
 
         byte[] fileBytes;
         String fileName;
-        MediaType mediaType;
+        MediaType mediaType = MediaType.APPLICATION_OCTET_STREAM;
 
         if ("json".equalsIgnoreCase(format)) {
+
             fileName = "analytics-" + shortCode + ".json";
             mediaType = MediaType.APPLICATION_JSON;
 
@@ -81,7 +82,7 @@ public class AnalyticsController {
             fileBytes = json.toString().getBytes(StandardCharsets.UTF_8);
         } else {
             fileName = "analytics-" + shortCode + ".csv";
-            mediaType = MediaType.parseMediaType("text/csv");
+            mediaType = MediaType.valueOf("text/csv");
 
             StringBuilder csv = new StringBuilder();
             csv.append("Category,Item,ClickCount\n");
@@ -96,8 +97,9 @@ public class AnalyticsController {
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-                .contentType(mediaType != null ? mediaType : MediaType.APPLICATION_OCTET_STREAM)
+                .contentType(mediaType)
                 .body(fileBytes);
+
     }
 
     private Map<String, Long> toMap(List<Object[]> queryResults) {
