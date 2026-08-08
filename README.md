@@ -101,6 +101,9 @@ URL-Shortener/
 │   ├── src/                  # React components, pages, context, and styles
 │   ├── package.json          # Frontend dependencies
 │   └── vite.config.ts        # Vite bundle configuration
+├── solutions/                # System Design & Object-Oriented Design (OOD) Blueprints
+│   ├── system_design/        # High-scale system design patterns (Pastebin, Query Cache, AWS Scaling)
+│   └── object_oriented_design/ # Low-level design implementations (LRU Cache, Hash Table, OOD)
 ├── docs/                     # System Design & Phase Architecture Documentation
 │   ├── architecture-decision-records/  # Architectural Decision Records (ADRs)
 │   ├── cheat-sheets/         # Quick reference technical cheat sheets
@@ -114,6 +117,7 @@ URL-Shortener/
 ├── LICENSE.txt               # MIT Open Source License
 └── README.md                 # Project README
 ```
+
 
 ---
 
@@ -271,6 +275,14 @@ Complete step-by-step architectural design documentation is available in the [`d
 - 🎓 [Senior System Design Interview Top 100 Prep](docs/interview-preparation-top-100.md)
 - 📖 [Glossary & Technical Terminology](docs/glossary.md)
 - 📑 [Architecture Decision Records (ADRs)](docs/architecture-decision-records/ADR-000-foundational-architecture.md)
+
+### 🧩 System Design & OOD Solution Blueprints (`solutions/`)
+- 💡 **[Pastebin / Bit.ly System Architecture](solutions/system_design/pastebin/README.md)**: High-scale text storage, Base62 hashing, S3 & DB capacity estimation.
+- 💡 **[Distributed Query Cache Strategy](solutions/system_design/query_cache/README.md)**: Cache-aside vs Write-through, LRU eviction, DB read-offloading.
+- 💡 **[AWS Infrastructure Scaling Blueprint](solutions/system_design/scaling_aws/README.md)**: Multi-AZ RDS, ELB, CloudFront CDN, and ElastiCache setup.
+- 💡 **[O(1) LRU Cache Implementation](solutions/object_oriented_design/lru_cache/)**: Doubly Linked List + HashMap thread-safe Caching pattern.
+- 💡 **[Custom Hash Table Design](solutions/object_oriented_design/hash_table/)**: High-performance key-value mapping with collision resolution.
+
 
 ---
 
